@@ -1,0 +1,59 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/4/2026 12:41:03 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ANTSA"
+  DTS:CreatorName="ANTSA\OMISTAJA"
+  DTS:DTSID="{02F4F788-7DA9-40E6-827E-EE0592147037}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1010.2"
+  DTS:LocaleID="1035"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{3E86C5C5-09DE-425A-843E-FFF211795C27}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Run_python"
+      DTS:CreationName="Microsoft.ExecuteProcess"
+      DTS:Description="Execute AntinCV pythonfile"
+      DTS:DTSID="{D4B3B84A-64D4-45CB-B03C-8795887DF39B}"
+      DTS:ExecutableType="Microsoft.ExecuteProcess"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run_python"
+      DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecuteProcessData
+          Executable="C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python39_64\python.exe"
+          Arguments="&quot;C:\Users\OMISTAJA\Documents\SQL Server Management Studio\Antin Omat\CV\AntinCV\AntinCV.py&quot;"
+          WorkingDirectory="C:\Users\OMISTAJA\Documents\SQL Server Management Studio\Antin Omat\CV\AntinCV\" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="158.4,59.2"
+          Id="Package\Run_python"
+          TopLeft="33.833333424396,31.1666666968001" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
