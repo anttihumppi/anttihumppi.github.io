@@ -1,24 +1,28 @@
-
 <!DOCTYPE html>
 <html lang="fi">
 <head>
     <meta charset="UTF-8">
-    <title>Antti Humppi - CV Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antti Humppi - CV Timeline</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f6f9;
+            background-color: navy;
             margin: 0;
-            padding: 20px;
-            color: #333;
+            padding: 24px 16px;
+            color: #000000;
         }
         .header-container {
-            max-width: 1200px;
-            margin: 0 auto 20px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 1100px;
+            margin: 0 auto 32px auto;
+            background-color: #d3d3d3;
+            color: #000000;
+            padding: 24px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
             display: flex;
             align-items: center;
             gap: 20px;
@@ -28,39 +32,159 @@
             height: 90px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid #0077b5;
+            border: 3px solid #000080;
+            flex-shrink: 0;
+            background-color: #ffffff;
         }
         .header-info h1 {
-            margin: 0 0 5px 0;
+            margin: 0 0 6px 0;
             font-size: 24px;
-            color: #111;
+            color: #000000;
         }
         .header-info p {
             margin: 0 0 10px 0;
-            color: #666;
+            color: #000000;
             font-size: 14px;
+            line-height: 1.45;
         }
         .linkedin-btn {
             display: inline-block;
-            background-color: #0077b5;
-            color: white;
+            background-color: #000080;
+            color: #ffffff;
             padding: 8px 16px;
-            border-radius: 4px;
+            border-radius: 5px;
             text-decoration: none;
             font-weight: bold;
             font-size: 14px;
-            transition: background 0.2s;
         }
         .linkedin-btn:hover {
-            background-color: #004182;
+            background-color: #000055;
         }
-        .card {
-            max-width: 1200px;
+        .timeline-section {
+            max-width: 1100px;
             margin: 0 auto;
-            background: white;
-            padding: 20px;
+        }
+        .timeline-heading {
+            text-align: center;
+            color: #ffffff;
+            font-size: 24px;
+            margin: 0 0 28px 0;
+        }
+        .timeline {
+            position: relative;
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 10px 0;
+        }
+        /* Keskilinja */
+        .timeline::after {
+            content: "";
+            position: absolute;
+            width: 4px;
+            background-color: #ffffff;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 2px;
+        }
+        .timeline-item {
+            padding: 12px 40px;
+            position: relative;
+            width: 50%;
+        }
+        /* Parittomat Job_ID:t vasemmalle */
+        .timeline-item.left {
+            left: 0;
+        }
+        /* Parilliset Job_ID:t oikealle */
+        .timeline-item.right {
+            left: 50%;
+        }
+        /* Job_ID-merkki keskilinjalla */
+        .timeline-dot {
+            position: absolute;
+            width: 34px;
+            height: 34px;
+            line-height: 30px;
+            text-align: center;
+            background-color: #d3d3d3;
+            color: #000000;
+            border: 3px solid #ffffff;
+            border-radius: 50%;
+            top: 22px;
+            font-weight: bold;
+            font-size: 13px;
+            z-index: 2;
+        }
+        .timeline-item.left .timeline-dot {
+            right: -17px;
+        }
+        .timeline-item.right .timeline-dot {
+            left: -17px;
+        }
+        .timeline-card {
+            background-color: #d3d3d3;
+            color: #000000;
+            padding: 18px 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .timeline-date {
+            font-size: 13px;
+            font-weight: bold;
+            color: #000000;
+            margin-bottom: 6px;
+        }
+        .timeline-role {
+            margin: 0 0 4px 0;
+            font-size: 18px;
+            color: #000000;
+        }
+        .timeline-employer {
+            font-size: 15px;
+            font-weight: bold;
+            color: #000000;
+            margin-bottom: 10px;
+        }
+        .timeline-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            font-size: 13px;
+            color: #000000;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #888888;
+        }
+        .timeline-desc {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #000000;
+        }
+        /* Responsiivisuus kapeammilla näytöillä */
+        @media screen and (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .timeline::after {
+                left: 24px;
+            }
+            .timeline-item {
+                width: 100%;
+                padding-left: 60px;
+                padding-right: 12px;
+            }
+            .timeline-item.left,
+            .timeline-item.right {
+                left: 0;
+            }
+            .timeline-item.left .timeline-dot,
+            .timeline-item.right .timeline-dot {
+                left: 7px;
+                right: auto;
+            }
         }
     </style>
 </head>
@@ -71,14 +195,330 @@
         <div class="header-info">
             <h1>Antti Humppi</h1>
             <p>An experienced supply chain management professional with work experience in team management, logistics planning, and database work and reporting.</p>
-            <p>By dragging the mouse over the chart, you get detailed information about each job. By clicking legend items, you can toggle the visibility of specific jobs.</p>
+            <p>Vertical career timeline generated automatically from SQL Server.</p>
             <a href="https://www.linkedin.com/in/anttihumppi/" target="_blank" class="linkedin-btn">🔗 LinkedIn Profile</a>
         </div>
     </div>
 
-    <div class="card">
-        <div style="height:750px; width:100%;">                        <script>window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
-        <script charset="utf-8" src="https://cdn.plot.ly/plotly-4.1.1.min.js" integrity="sha256-O24V1F27f8pb0glCkelh3cVHLNiHAJ5gCaVtq2aNch8=" crossorigin="anonymous"></script>                <div id="20d679c6-8749-48af-85f1-5ad11493630d" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("20d679c6-8749-48af-85f1-5ad11493630d")) {                    Plotly.newPlot(                        "20d679c6-8749-48af-85f1-5ad11493630d",                        [{"base":["2011-01-01T00:00:00.000000000"],"customdata":[["01.01.2011","31.05.2011","- I Worked as a parttime warehouse worker in furniture store Sotka, where my main tasks included:\u003cbr\u003e- Warehouse collections to customers \u003cbr\u003e- reception of goods\u003cbr\u003e- and assemply of goods","Kotka","n\u002fa"]],"hovertemplate":"\u003cb\u003e%{hovertext}\u003c\u002fb\u003e\u003cbr\u003e\ud83d\udcc5 Time: %{customdata[0]} \u2013 %{customdata[1]}\u003cbr\u003e\ud83d\udccd Location: %{customdata[3]}\u003cbr\u003e\ud83d\udc64 Supervisor: %{customdata[4]}\u003cbr\u003e\u003cbr\u003e\u003cb\u003eExperience:\u003c\u002fb\u003e\u003cbr\u003e%{customdata[2]}\u003cextra\u003e\u003c\u002fextra\u003e","hovertext":["J.Soikkeli KY \u002f Sotka Kotka - Warehouse worker"],"legendgroup":"J.Soikkeli KY \u002f Sotka Kotka","marker":{"color":"#636efa","pattern":{"shape":""}},"name":"J.Soikkeli KY \u002f Sotka Kotka","orientation":"h","showlegend":true,"textposition":"auto","x":[12960000000],"xaxis":"x","y":["1: J.Soikkeli KY \u002f Sotka Kotka (Warehouse worker)"],"yaxis":"y","type":"bar"},{"base":["2011-05-01T00:00:00.000000000","2012-05-01T00:00:00.000000000"],"customdata":[["01.05.2011","31.08.2011","I was responsible of\u003cbr\u003e- moving finished product pallets to the warehouse,- receiving and storing packaging materials\u003cbr\u003e- other possible forklift tasks.\u003cbr\u003e- fructose liquid station for the process operators vacation replacement, preparation of liquid fructose for customers, and packaging either directly into a tanker truck or into liquid transport containers.  ","Kotka","Tommi Sahari"],["01.05.2012","30.09.2012","I was responsible of\u003cbr\u003e- moving finished product pallets to the warehouse,- receiving and storing packaging materials\u003cbr\u003e- other possible forklift tasks.\u003cbr\u003e- fructose liquid station for the process operators vacation replacement, preparation of liquid fructose for customers, and packaging either directly into a tanker truck or into liquid transport containers.  ","Kotka","Tommi Sahari"]],"hovertemplate":"\u003cb\u003e%{hovertext}\u003c\u002fb\u003e\u003cbr\u003e\ud83d\udcc5 Time: %{customdata[0]} \u2013 %{customdata[1]}\u003cbr\u003e\ud83d\udccd Location: %{customdata[3]}\u003cbr\u003e\ud83d\udc64 Supervisor: %{customdata[4]}\u003cbr\u003e\u003cbr\u003e\u003cb\u003eExperience:\u003c\u002fb\u003e\u003cbr\u003e%{customdata[2]}\u003cextra\u003e\u003c\u002fextra\u003e","hovertext":["Danisco Sweeteners Oy - Material handler","Danisco Sweeteners Oy - Material handler"],"legendgroup":"Danisco Sweeteners Oy","marker":{"color":"#EF553B","pattern":{"shape":""}},"name":"Danisco Sweeteners Oy","orientation":"h","showlegend":true,"textposition":"auto","x":[10540800000,13132800000],"xaxis":"x","y":["2: Danisco Sweeteners Oy (Material handler)","3: Danisco Sweeteners Oy (Material handler)"],"yaxis":"y","type":"bar"},{"base":["2012-10-01T00:00:00.000000000","2020-01-02T00:00:00.000000000","2020-09-01T00:00:00.000000000","2023-07-01T00:00:00.000000000","2025-09-02T00:00:00.000000000"],"customdata":[["01.10.2012","31.12.2012","- Independent job apply after UAS studies.\u003cbr\u003e- Preparation for working abroad","-","-"],["02.01.2020","30.04.2020","- Independent job apply during Covid19 Pandemic.\u003cbr\u003e- I also moved in December 2019 to Tampere, Pirkanmaa region, to start new era","-","-"],["01.09.2020","07.02.2021","- Independent job apply at Pirkanmaa.\u003cbr\u003e- Participation for truck driver course, TAKK","-","-"],["01.07.2023","31.10.2023","- Independent job apply after temporary role","-","-"],["02.09.2025","26.11.2026","- Independent Job apply \u003cbr\u003e- I participated in Responsible and effective Logistics course by Taitotalo\u003cbr\u003e- I have developed my SQL and PowerBi skills with own projects, and learned efficient ways of use i.e. Python.\u003cbr\u003e- Participated to several fairs and tried to make new relevant connections to my network. \u003cbr\u003e- I have been also pretty active in Linkedin and there succesfully raised the amount of connections","-","-"]],"hovertemplate":"\u003cb\u003e%{hovertext}\u003c\u002fb\u003e\u003cbr\u003e\ud83d\udcc5 Time: %{customdata[0]} \u2013 %{customdata[1]}\u003cbr\u003e\ud83d\udccd Location: %{customdata[3]}\u003cbr\u003e\ud83d\udc64 Supervisor: %{customdata[4]}\u003cbr\u003e\u003cbr\u003e\u003cb\u003eExperience:\u003c\u002fb\u003e\u003cbr\u003e%{customdata[2]}\u003cextra\u003e\u003c\u002fextra\u003e","hovertext":["Career Break - -","Career Break - -","Career Break - -","Career Break - -","Career Break - -"],"legendgroup":"Career Break","marker":{"color":"#00cc96","pattern":{"shape":""}},"name":"Career Break","orientation":"h","showlegend":true,"textposition":"auto","x":[7862400000,10281600000,13737600000,10540800000,38880000000],"xaxis":"x","y":["4: Career Break (-)","8: Career Break (-)","10: Career Break (-)","12: Career Break (-)","15: Career Break (-)"],"yaxis":"y","type":"bar"},{"base":["2013-01-01T00:00:00.000000000"],"customdata":[["01.01.2013","14.05.2014","- I was responsible for the customer-specific inspection of electronic purchase invoices \u003cbr\u003e\u003cbr\u003e- I take care of the monthly correctness of customer accounts at Europes largest electronics retailer. \u003cbr\u003e\u003cbr\u003e- The work was teamwork in English that required financial precision","Brno, CZ","Katarina Vavrova"]],"hovertemplate":"\u003cb\u003e%{hovertext}\u003c\u002fb\u003e\u003cbr\u003e\ud83d\udcc5 Time: %{customdata[0]} \u2013 %{customdata[1]}\u003cbr\u003e\ud83d\udccd Location: %{customdata[3]}\u003cbr\u003e\ud83d\udc64 Supervisor: %{customdata[4]}\u003cbr\u003e\u003cbr\u003e\u003cb\u003eExperience:\u003c\u002fb\u003e\u003cbr\u003e%{customdata[2]}\u003cextra\u003e\u003c\u002fextra\u003e","hovertext":["Dixons Retail SSC s.r.o - Account Management Coordinator"],"legendgroup":"Dixons Retail SSC s.r.o","marker":{"color":"#ab63fa","pattern":{"shape":""}},"name":"Dixons Retail SSC s.r.o","orientation":"h","showlegend":true,"textposition":"auto","x":[43027200000],"xaxis":"x","y":["5: Dixons Retail SSC s.r.o (Account Management Coordinator)"],"yaxis":"y","type":"bar"},{"base":["2014-06-01T00:00:00.000000000","2015-12-01T00:00:00.000000000"],"customdata":[["01.06.2014","30.11.2015","- I worked in voice picking in a fresh produce warehouse. \u003cbr\u003e\u003cbr\u003e- The tasks included also the maintenance of the corridors and the reception of return trolleys. \u003cbr\u003e\u003cbr\u003e- The work also included various forklift work like putaway and unloading trucks (counterweight, push mast)","Espoo","Tony Sontag"],["01.12.2015","31.12.2019","- I worked as the supervisor of the employees on shift.\u003cbr\u003e\u003cbr\u003e- My area of responsibility has been both manual and light picking, and later automation picking. \u003cbr\u003e\u003cbr\u003e- On the automation side, I worked as a supervisor for 30 people in shifts, was responsible for production throughput, safety, automation functionality, and operator machine and forklift trainings","Sipoo","Jaakko Vaarankorpi"]],"hovertemplate":"\u003cb\u003e%{hovertext}\u003c\u002fb\u003e\u003cbr\u003e\ud83d\udcc5 Time: %{customdata[0]} \u2013 %{customdata[1]}\u003cbr\u003e\ud83d\udccd Location: %{customdata[3]}\u003cbr\u003e\ud83d\udc64 Supervisor: %{customdata[4]}\u003cbr\u003e\u003cbr\u003e\u003cb\u003eExperience:\u003c\u002fb\u003e\u003cbr\u003e%{customdata[2]}\u003cextra\u003e\u003c\u002fextra\u003e","hovertext":["Inex Partners Oy - Logistics worker","Inex Partners Oy - Shift foreman"],"legendgroup":"Inex Partners Oy","marker":{"color":"#FFA15A","pattern":{"shape":""}},"name":"Inex Partners Oy","orientation":"h","showlegend":true,"textposition":"auto","x":[47260800000,128822400000],"xaxis":"x","y":["6: Inex Partners Oy (Logistics worker)","7: Inex Partners Oy (Shift foreman)"],"yaxis":"y","type":"bar"},{"base":["2020-05-01T00:00:00.000000000"],"customdata":[["01.05.2020","31.08.2020"," - I was responsible for the planning of transports and bookings from the Varkaus and Heinola factories to Poland and Baltic countries. \u003cbr\u003e - As part of the daily work, the tasks also included actively monitoring and developing the flow of goods from internal customers.","Varkaus","Yrj\u00f6 Ristkari"]],"hovertemplate":"\u003cb\u003e%{hovertext}\u003c\u002fb\u003e\u003cbr\u003e\ud83d\udcc5 Time: %{customdata[0]} \u2013 %{customdata[1]}\u003cbr\u003e\ud83d\udccd Location: %{customdata[3]}\u003cbr\u003e\ud83d\udc64 Supervisor: %{customdata[4]}\u003cbr\u003e\u003cbr\u003e\u003cb\u003eExperience:\u003c\u002fb\u003e\u003cbr\u003e%{customdata[2]}\u003cextra\u003e\u003c\u002fextra\u003e","hovertext":["Stora Enso Oyj - Supply Chain Coordinator "],"legendgroup":"Stora Enso Oyj","marker":{"color":"#19d3f3","pattern":{"shape":""}},"name":"Stora Enso Oyj","orientation":"h","showlegend":true,"textposition":"auto","x":[10540800000],"xaxis":"x","y":["9: Stora Enso Oyj (Supply Chain Coordinator )"],"yaxis":"y","type":"bar"},{"base":["2021-02-08T00:00:00.000000000"],"customdata":[["08.02.2021","30.06.2023","- I was responsible for the long-term rough planning of the paperboard mill production (3 months). \u003cbr\u003e\u003cbr\u003e- The tasks included cooperation with various stakeholders such as customer service, sales, logistics and the factory production planners. \u003cbr\u003e\u003cbr\u003e- I was also part of the S&OP team, whose task was to determine, among other things, sales allocations based on capacity and forecast by customer group.","Tampere","Lasse Saastamoinen"]],"hovertemplate":"\u003cb\u003e%{hovertext}\u003c\u002fb\u003e\u003cbr\u003e\ud83d\udcc5 Time: %{customdata[0]} \u2013 %{customdata[1]}\u003cbr\u003e\ud83d\udccd Location: %{customdata[3]}\u003cbr\u003e\ud83d\udc64 Supervisor: %{customdata[4]}\u003cbr\u003e\u003cbr\u003e\u003cb\u003eExperience:\u003c\u002fb\u003e\u003cbr\u003e%{customdata[2]}\u003cextra\u003e\u003c\u002fextra\u003e","hovertext":["Mets\u00e4 Board International Oy - Demand & Supply Planner"],"legendgroup":"Mets\u00e4 Board International Oy","marker":{"color":"#FF6692","pattern":{"shape":""}},"name":"Mets\u00e4 Board International Oy","orientation":"h","showlegend":true,"textposition":"auto","x":[75340800000],"xaxis":"x","y":["11: Mets\u00e4 Board International Oy (Demand & Supply Planner)"],"yaxis":"y","type":"bar"},{"base":["2023-11-01T00:00:00.000000000","2024-03-01T00:00:00.000000000"],"customdata":[["01.11.2023","29.02.2024","- I was responsible for compiling PowerBI reports on the operations of the dispatch department \u003cbr\u003e\u003cbr\u003e- I participated in the development of logistics processes, the goal of which was to improve delivery reliability and improve decision-making based on reports. \u003cbr\u003e\u003cbr\u003e- The created reports were completely new and raised visibility of actions","Tampere","Susanna Kaivonen"],["01.03.2024","01.09.2025","\u003cbr\u003e- I was responsible for compiling PowerBI reports from SQL databases. I used SSMS and SSIS tools as well as PowerBi.\u003cbr\u003e\u003cbr\u003e- I designed and implemented Data Flow (ETL) solutions from several different data sources (e.g. ERP, Excel, databases),  \u003cbr\u003e\u003cbr\u003e- Improved data quality and consistency.\u003cbr\u003e\u003cbr\u003e- I developed database queries (SQL) that accelerated the performance of the reports.\u003cbr\u003e\u003cbr\u003e- I worked between the person who ordered the report (internal customers) and the technical implementations. \u003cbr\u003e\u003cbr\u003e- The task included problem-solving skills, understanding internal end users, and the ability to tell what is feasible and what is not.","Tampere","Marko Kelola"]],"hovertemplate":"\u003cb\u003e%{hovertext}\u003c\u002fb\u003e\u003cbr\u003e\ud83d\udcc5 Time: %{customdata[0]} \u2013 %{customdata[1]}\u003cbr\u003e\ud83d\udccd Location: %{customdata[3]}\u003cbr\u003e\ud83d\udc64 Supervisor: %{customdata[4]}\u003cbr\u003e\u003cbr\u003e\u003cb\u003eExperience:\u003c\u002fb\u003e\u003cbr\u003e%{customdata[2]}\u003cextra\u003e\u003c\u002fextra\u003e","hovertext":["Valmet Automation Oy - Shipping Coordinator","Valmet Automation Oy - System Specialist"],"legendgroup":"Valmet Automation Oy","marker":{"color":"#B6E880","pattern":{"shape":""}},"name":"Valmet Automation Oy","orientation":"h","showlegend":true,"textposition":"auto","x":[10368000000,47433600000],"xaxis":"x","y":["13: Valmet Automation Oy (Shipping Coordinator)","14: Valmet Automation Oy (System Specialist)"],"yaxis":"y","type":"bar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"type":"date","title":{"text":"timeframe"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":""},"categoryorder":"array","categoryarray":["15: Career Break (-)","14: Valmet Automation Oy (System Specialist)","13: Valmet Automation Oy (Shipping Coordinator)","12: Career Break (-)","11: Mets\u00e4 Board International Oy (Demand & Supply Planner)","10: Career Break (-)","9: Stora Enso Oyj (Supply Chain Coordinator )","8: Career Break (-)","7: Inex Partners Oy (Shift foreman)","6: Inex Partners Oy (Logistics worker)","5: Dixons Retail SSC s.r.o (Account Management Coordinator)","4: Career Break (-)","3: Danisco Sweeteners Oy (Material handler)","2: Danisco Sweeteners Oy (Material handler)","1: J.Soikkeli KY \u002f Sotka Kotka (Warehouse worker)"]},"legend":{"title":{"text":"Employers"},"tracegroupgap":0},"margin":{"t":80,"l":50,"r":50,"b":50},"barmode":"overlay","font":{"family":"Arial"},"title":{"font":{"size":22},"text":"Experience"},"hoverlabel":{"font":{"size":13,"family":"Arial"},"bgcolor":"white"},"height":750},                        {"responsive": true}                    )                };            </script>        </div>
+    <div class="timeline-section">
+        <h2 class="timeline-heading">Experience Timeline</h2>
+        <div class="timeline">
+            
+        <div class="timeline-item left">
+            <div class="timeline-dot">1</div>
+            <div class="timeline-card">
+                <div class="timeline-date">📅 01.01.2005 – 31.03.2007</div>
+                <h3 class="timeline-role">Personal assistant</h3>
+                <div class="timeline-employer">Mänttä Region Support for People with Intellectual Disabilities</div>
+                <div class="timeline-meta">
+                    <span>📍 Mänttä</span>
+                    <span>👤 Jussi Karhumäki</span>
+                </div>
+                <div class="timeline-desc">I worked once in a week as a personal assistant for intellectually disabled person.<br>Job was part-time job during High School.<br>Task included - teaching swimming with assistant - helping a person to get dressed on time - being supportive, sensitive and respective - being a &quot;buddy&quot; for a great person</div>
+            </div>
+        </div>
+    
+
+        <div class="timeline-item right">
+            <div class="timeline-dot">2</div>
+            <div class="timeline-card">
+                <div class="timeline-date">📅 01.06.2006 – 30.06.2007</div>
+                <h3 class="timeline-role">Salesperson</h3>
+                <div class="timeline-employer">S-Market Mänttä</div>
+                <div class="timeline-meta">
+                    <span>📍 Mänttä</span>
+                    <span>👤 Petra Häkkinen</span>
+                </div>
+                <div class="timeline-desc">I worked part-time during my high school as a salesperson.<br>Job included cashier tasks, customer service and putaway for goods</div>
+            </div>
+        </div>
+    
+
+        <div class="timeline-item left">
+            <div class="timeline-dot">3</div>
+            <div class="timeline-card">
+                <div class="timeline-date">📅 04.07.2007 – 04.07.2008</div>
+                <h3 class="timeline-role">Non-Comissioning Officer</h3>
+                <div class="timeline-employer">Finnish Defence Forces</div>
+                <div class="timeline-meta">
+                    <span>📍 Hämeenlinna</span>
+                    <span>👤 Several</span>
+                </div>
+                <div class="timeline-desc">I did my military service at Armoured Brigade/Helsinki Air Defence Regiment.<br>I learned plenty of survival and tactical skills as well as leading a reconnaissance group.<br></div>
+            </div>
+        </div>
+    
+
+        <div class="timeline-item right">
+            <div class="timeline-dot">4</div>
+            <div class="timeline-card">
+                <div class="timeline-date">📅 15.07.2008 – 31.12.2008</div>
+                <h3 class="timeline-role">Assembler/Packer/Insulator</h3>
+                <div class="timeline-employer">Javasko Oy</div>
+                <div class="timeline-meta">
+                    <span>📍 Mänttä</span>
+                    <span>👤 Jyrki Vessari</span>
+                </div>
+                <div class="timeline-desc">After my military service, I worked at Javasko Oy.<br>Work was temporary job until the end of the year.<br>Work included - Packing of finished products - Isolating of bearing shields - Assembling items for products FAT-tests</div>
+            </div>
+        </div>
+    
+
+        <div class="timeline-item left">
+            <div class="timeline-dot">5</div>
+            <div class="timeline-card">
+                <div class="timeline-date">📅 01.06.2009 – 31.08.2009</div>
+                <h3 class="timeline-role">Salesperson / Warehouse Worker</h3>
+                <div class="timeline-employer">Suur-Seudun Osuuskauppa / Prisma Halikko</div>
+                <div class="timeline-meta">
+                    <span>📍 Halikko</span>
+                    <span>👤 Heikki Keskinen</span>
+                </div>
+                <div class="timeline-desc">I worked as a salesperson/warehouse worker during the summer 2009.<br>It was also my first traineeship for my engineer studies</div>
+            </div>
+        </div>
+    
+
+        <div class="timeline-item right">
+            <div class="timeline-dot">6</div>
+            <div class="timeline-card">
+                <div class="timeline-date">📅 02.09.2009 – 30.12.2010</div>
+                <h3 class="timeline-role">Salesperson / Warehouse Worker</h3>
+                <div class="timeline-employer">Osuuskauppa Ympyrä / Prisma Sutela</div>
+                <div class="timeline-meta">
+                    <span>📍 Kotka</span>
+                    <span>👤 Jari Klaus</span>
+                </div>
+                <div class="timeline-desc">I worked part time Salesperson / Warehouse Worker during my UAS studies.<br>This was also my second traineeship</div>
+            </div>
+        </div>
+    
+
+        <div class="timeline-item left">
+            <div class="timeline-dot">7</div>
+            <div class="timeline-card">
+                <div class="timeline-date">📅 01.01.2011 – 31.05.2011</div>
+                <h3 class="timeline-role">Warehouse worker</h3>
+                <div class="timeline-employer">J.Soikkeli KY / Sotka Kotka</div>
+                <div class="timeline-meta">
+                    <span>📍 Kotka</span>
+                    <span>👤 n/a</span>
+                </div>
+                <div class="timeline-desc">- I Worked as a parttime warehouse worker in furniture store Sotka, where my main tasks included: - Warehouse collections to customers  - reception of goods - and assemply of goods</div>
+            </div>
+        </div>
+    
+
+        <div class="timeline-item right">
+            <div class="timeline-dot">8</div>
+            <div class="timeline-card">
+                <div class="timeline-date">📅 01.05.2011 – 31.08.2011</div>
+                <h3 class="timeline-role">Material handler</h3>
+                <div class="timeline-employer">Danisco Sweeteners Oy</div>
+                <div class="timeline-meta">
+                    <span>📍 Kotka</span>
+                    <span>👤 Tommi Sahari</span>
+                </div>
+                <div class="timeline-desc">I was responsible of - moving finished product pallets to the warehouse,- receiving and storing packaging materials - other possible forklift tasks.<br>- fructose liquid station for the process operators vacation replacement, preparation of liquid fructose for customers, and packaging either directly into a tanker truck or into liquid transport containers.<br></div>
+            </div>
+        </div>
+    
+
+        <div class="timeline-item left">
+            <div class="timeline-dot">9</div>
+            <div class="timeline-card">
+                <div class="timeline-date">📅 01.05.2012 – 30.09.2012</div>
+                <h3 class="timeline-role">Material handler</h3>
+                <div class="timeline-employer">Danisco Sweeteners Oy</div>
+                <div class="timeline-meta">
+                    <span>📍 Kotka</span>
+                    <span>👤 Tommi Sahari</span>
+                </div>
+                <div class="timeline-desc">I was responsible of - moving finished product pallets to the warehouse,- receiving and storing packaging materials - other possible forklift tasks.<br>- fructose liquid station for the process operators vacation replacement, preparation of liquid fructose for customers, and packaging either directly into a tanker truck or into liquid transport containers.<br></div>
+            </div>
+        </div>
+    
+
+        <div class="timeline-item right">
+            <div class="timeline-dot">10</div>
+            <div class="timeline-card">
+                <div class="timeline-date">📅 01.10.2012 – 31.12.2012</div>
+                <h3 class="timeline-role">-</h3>
+                <div class="timeline-employer">Career Break</div>
+                <div class="timeline-meta">
+                    <span>📍 -</span>
+                    <span>👤 -</span>
+                </div>
+                <div class="timeline-desc">- Independent job apply after UAS studies.<br>- Preparation for working abroad</div>
+            </div>
+        </div>
+    
+
+        <div class="timeline-item left">
+            <div class="timeline-dot">11</div>
+            <div class="timeline-card">
+                <div class="timeline-date">📅 01.01.2013 – 14.05.2014</div>
+                <h3 class="timeline-role">Account Management Coordinator</h3>
+                <div class="timeline-employer">Dixons Retail SSC s.r.o</div>
+                <div class="timeline-meta">
+                    <span>📍 Brno, CZ</span>
+                    <span>👤 Katarina Vavrova</span>
+                </div>
+                <div class="timeline-desc">- I was responsible for the customer-specific inspection of electronic purchase invoices   - I take care of the monthly correctness of customer accounts at Europes largest electronics retailer.<br>- The work was teamwork in English that required financial precision</div>
+            </div>
+        </div>
+    
+
+        <div class="timeline-item right">
+            <div class="timeline-dot">12</div>
+            <div class="timeline-card">
+                <div class="timeline-date">📅 01.06.2014 – 30.11.2015</div>
+                <h3 class="timeline-role">Logistics worker</h3>
+                <div class="timeline-employer">Inex Partners Oy</div>
+                <div class="timeline-meta">
+                    <span>📍 Espoo</span>
+                    <span>👤 Tony Sontag</span>
+                </div>
+                <div class="timeline-desc">- I worked in voice picking in a fresh produce warehouse.<br>- The tasks included also the maintenance of the corridors and the reception of return trolleys.<br>- The work also included various forklift work like putaway and unloading trucks (counterweight, push mast)</div>
+            </div>
+        </div>
+    
+
+        <div class="timeline-item left">
+            <div class="timeline-dot">13</div>
+            <div class="timeline-card">
+                <div class="timeline-date">📅 01.12.2015 – 31.12.2019</div>
+                <h3 class="timeline-role">Shift foreman</h3>
+                <div class="timeline-employer">Inex Partners Oy</div>
+                <div class="timeline-meta">
+                    <span>📍 Sipoo</span>
+                    <span>👤 Jaakko Vaarankorpi</span>
+                </div>
+                <div class="timeline-desc">- I worked as the supervisor of the employees on shift.<br>- My area of responsibility has been both manual and light picking, and later automation picking.<br>- On the automation side, I worked as a supervisor for 30 people in shifts, was responsible for production throughput, safety, automation functionality, and operator machine and forklift trainings</div>
+            </div>
+        </div>
+    
+
+        <div class="timeline-item right">
+            <div class="timeline-dot">14</div>
+            <div class="timeline-card">
+                <div class="timeline-date">📅 02.01.2020 – 30.04.2020</div>
+                <h3 class="timeline-role">-</h3>
+                <div class="timeline-employer">Career Break</div>
+                <div class="timeline-meta">
+                    <span>📍 -</span>
+                    <span>👤 -</span>
+                </div>
+                <div class="timeline-desc">- Independent job apply during Covid19 Pandemic.<br>- I also moved in December 2019 to Tampere, Pirkanmaa region, to start new era</div>
+            </div>
+        </div>
+    
+
+        <div class="timeline-item left">
+            <div class="timeline-dot">15</div>
+            <div class="timeline-card">
+                <div class="timeline-date">📅 01.05.2020 – 31.08.2020</div>
+                <h3 class="timeline-role">Supply Chain Coordinator </h3>
+                <div class="timeline-employer">Stora Enso Oyj</div>
+                <div class="timeline-meta">
+                    <span>📍 Varkaus</span>
+                    <span>👤 Yrjö Ristkari</span>
+                </div>
+                <div class="timeline-desc">- I was responsible for the planning of transports and bookings from the Varkaus and Heinola factories to Poland and Baltic countries.<br>- As part of the daily work, the tasks also included actively monitoring and developing the flow of goods from internal customers.<br></div>
+            </div>
+        </div>
+    
+
+        <div class="timeline-item right">
+            <div class="timeline-dot">16</div>
+            <div class="timeline-card">
+                <div class="timeline-date">📅 01.09.2020 – 07.02.2021</div>
+                <h3 class="timeline-role">-</h3>
+                <div class="timeline-employer">Career Break</div>
+                <div class="timeline-meta">
+                    <span>📍 -</span>
+                    <span>👤 -</span>
+                </div>
+                <div class="timeline-desc">- Independent job apply at Pirkanmaa.<br>- Participation for truck driver course, TAKK</div>
+            </div>
+        </div>
+    
+
+        <div class="timeline-item left">
+            <div class="timeline-dot">17</div>
+            <div class="timeline-card">
+                <div class="timeline-date">📅 08.02.2021 – 30.06.2023</div>
+                <h3 class="timeline-role">Demand &amp; Supply Planner</h3>
+                <div class="timeline-employer">Metsä Board International Oy</div>
+                <div class="timeline-meta">
+                    <span>📍 Tampere</span>
+                    <span>👤 Lasse Saastamoinen</span>
+                </div>
+                <div class="timeline-desc">- I was responsible for the long-term rough planning of the paperboard mill production (3 months).<br>- The tasks included cooperation with various stakeholders such as customer service, sales, logistics and the factory production planners.<br>- I was also part of the S&amp;OP team, whose task was to determine, among other things, sales allocations based on capacity and forecast by customer group.<br></div>
+            </div>
+        </div>
+    
+
+        <div class="timeline-item right">
+            <div class="timeline-dot">18</div>
+            <div class="timeline-card">
+                <div class="timeline-date">📅 01.07.2023 – 31.10.2023</div>
+                <h3 class="timeline-role">-</h3>
+                <div class="timeline-employer">Career Break</div>
+                <div class="timeline-meta">
+                    <span>📍 -</span>
+                    <span>👤 -</span>
+                </div>
+                <div class="timeline-desc">- Independent job apply after temporary role</div>
+            </div>
+        </div>
+    
+
+        <div class="timeline-item left">
+            <div class="timeline-dot">19</div>
+            <div class="timeline-card">
+                <div class="timeline-date">📅 01.11.2023 – 29.02.2024</div>
+                <h3 class="timeline-role">Shipping Coordinator</h3>
+                <div class="timeline-employer">Valmet Automation Oy</div>
+                <div class="timeline-meta">
+                    <span>📍 Tampere</span>
+                    <span>👤 Susanna Kaivonen</span>
+                </div>
+                <div class="timeline-desc">- I was responsible for compiling PowerBI reports on the operations of the dispatch department   - I participated in the development of logistics processes, the goal of which was to improve delivery reliability and improve decision-making based on reports.<br>- The created reports were completely new and raised visibility of actions</div>
+            </div>
+        </div>
+    
+
+        <div class="timeline-item right">
+            <div class="timeline-dot">20</div>
+            <div class="timeline-card">
+                <div class="timeline-date">📅 01.03.2024 – 01.09.2025</div>
+                <h3 class="timeline-role">System Specialist</h3>
+                <div class="timeline-employer">Valmet Automation Oy</div>
+                <div class="timeline-meta">
+                    <span>📍 Tampere</span>
+                    <span>👤 Marko Kelola</span>
+                </div>
+                <div class="timeline-desc">- I was responsible for compiling PowerBI reports from SQL databases.<br>I used SSMS and SSIS tools as well as PowerBi.<br>- I designed and implemented Data Flow (ETL) solutions from several different data sources (e.<br>g.<br>ERP, Excel, databases),    - Improved data quality and consistency.<br>- I developed database queries (SQL) that accelerated the performance of the reports.<br>- I worked between the person who ordered the report (internal customers) and the technical implementations.<br>- The task included problem-solving skills, understanding internal end users, and the ability to tell what is feasible and what is not.<br></div>
+            </div>
+        </div>
+    
+
+        <div class="timeline-item left">
+            <div class="timeline-dot">21</div>
+            <div class="timeline-card">
+                <div class="timeline-date">📅 02.09.2025 – 26.11.2026</div>
+                <h3 class="timeline-role">-</h3>
+                <div class="timeline-employer">Career Break</div>
+                <div class="timeline-meta">
+                    <span>📍 -</span>
+                    <span>👤 -</span>
+                </div>
+                <div class="timeline-desc">- Independent Job apply  - I participated in Responsible and effective Logistics course by Taitotalo - I have developed my SQL and PowerBi skills with own projects, and learned efficient ways of use i.<br>e.<br>Python.<br>- Participated to several fairs and tried to make new relevant connections to my network.<br>- I have been also pretty active in Linkedin and there succesfully raised the amount of connections</div>
+            </div>
+        </div>
+    
+        </div>
     </div>
 
 </body>
